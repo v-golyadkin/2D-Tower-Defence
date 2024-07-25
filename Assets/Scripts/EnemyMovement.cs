@@ -8,7 +8,7 @@ public class EnemyMovement : MonoBehaviour
 
 
     [Header("Attributes")]
-    [SerializeField] private float _movespeed = 2f;
+    [SerializeField] private float _moveSpeed = 2f;
 
     private Rigidbody2D _body;
 
@@ -33,6 +33,7 @@ public class EnemyMovement : MonoBehaviour
 
             if(_pathIndex >= LevelManager.instance.path.Length)
             {
+                EnemySpawner.onEnemyDestroy.Invoke();
                 Destroy(gameObject);
                 return;
             }
@@ -47,6 +48,6 @@ public class EnemyMovement : MonoBehaviour
     {
         Vector2 direction = (_target.position - transform.position).normalized;
 
-        _body.velocity = direction * _movespeed;
+        _body.velocity = direction * _moveSpeed;
     }
 }
