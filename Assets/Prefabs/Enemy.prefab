@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4435385844256645485}
   - component: {fileID: 5191486995387064486}
   - component: {fileID: 8681040736261061413}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -161,4 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7011af57af7883f4ca48d05fff5f895f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 10
+  _moveSpeed: 2
