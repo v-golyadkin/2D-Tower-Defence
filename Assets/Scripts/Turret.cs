@@ -8,13 +8,17 @@ public class Turret : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private Transform _turretRotationPoint;
+    [SerializeField] private Transform _firingPoint;
     [SerializeField] private LayerMask _enemyMask;
+    [SerializeField] private GameObject _bulletPrefab;
 
     [Header("Attribute")]
     [SerializeField] private float _targetingRange = 5f;
     [SerializeField] private float _rotationSpeed = 200f;
+    [SerializeField] private float _bulletPerSecond = 1f;
 
     private Transform _target;
+    private float _timeUntilFire;
 
     private void Update()
     {
@@ -30,6 +34,23 @@ public class Turret : MonoBehaviour
         {
             _target = null;
         }
+        else
+        {
+            _timeUntilFire += Time.deltaTime;
+
+            if( _timeUntilFire >= 1f / _bulletPerSecond)
+            {
+                Shoot();
+                _timeUntilFire = 0;
+            }
+        }
+    }
+
+    private void Shoot()
+    {
+        GameObject bulletObject = Instantiate(_bulletPrefab, _firingPoint.position, Quaternion.identity);
+        Bullet bulletScript = bulletObject.GetComponent<Bullet>();
+        bulletScript.SetTarget(_target);
     }
 
     private bool CheckTargetIsInRange()
