@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -593006803
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 44eceeaefc883ff4291d15964f36d754, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -229,7 +229,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5747306619473202834}
   - {fileID: 863849806059196282}
@@ -252,7 +252,7 @@ MonoBehaviour:
   _enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  _bulletPrefab: {fileID: 3684606999888016271, guid: f135bdf0865c29a4290634b1ed7b9b56, type: 3}
+  _bulletPrefab: {fileID: 7898056147383342393, guid: f135bdf0865c29a4290634b1ed7b9b56, type: 3}
   _targetingRange: 3
   _rotationSpeed: 200
   _bulletPerSecond: 1
