@@ -811,9 +811,9 @@ MonoBehaviour:
   - name: Basic Turret
     cost: 100
     prefab: {fileID: 7283870652757121558, guid: 52f07da38b9e9434db5dac552ff0c958, type: 3}
-  - name: Test Turret
+  - name: Slowmo Turret
     cost: 150
-    prefab: {fileID: 7283870652757121558, guid: 0577c9bf5bc71b04fa801aeffb451989, type: 3}
+    prefab: {fileID: 6821066430908915832, guid: d25555e221c764849827449d5e227328, type: 3}
 --- !u!1001 &163738273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1584,7 +1584,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 244837352}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1669310317}
+        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+        m_MethodName: ToggleMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &244837352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5284,7 +5296,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Test Turret
+  m_text: 'Slowmo Turret
 
 '
   m_isRightToLeft: 0
@@ -8249,7 +8261,7 @@ GameObject:
   - component: {fileID: 1656256533}
   - component: {fileID: 1656256532}
   m_Layer: 5
-  m_Name: Test Turret
+  m_Name: Slowmo Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
