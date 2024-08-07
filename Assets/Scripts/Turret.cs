@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Turret : MonoBehaviour
 {
@@ -11,14 +12,30 @@ public class Turret : MonoBehaviour
     [SerializeField] private Transform _firingPoint;
     [SerializeField] private LayerMask _enemyMask;
     [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private GameObject _upgradeUI;
+    [SerializeField] private Button _upgradeButton;
 
     [Header("Attribute")]
     [SerializeField] private float _targetingRange = 5f;
     [SerializeField] private float _rotationSpeed = 200f;
     [SerializeField] private float _bulletPerSecond = 1f;
+    [SerializeField] private int _baseUpgradeCost = 100;
 
     private Transform _target;
     private float _timeUntilFire;
+    
+    private float _targetingRangeBase;
+    private float _bulletPerSecondBase;
+
+    private int _level = 1;
+
+    private void Start()
+    {
+        _targetingRangeBase = _targetingRange;
+        _bulletPerSecondBase = _bulletPerSecond;
+
+        _upgradeButton.onClick.AddListener(Upgrade);
+    }
 
     private void Update()
     {
@@ -74,6 +91,50 @@ public class Turret : MonoBehaviour
         {
             _target = hits[0].transform;
         }
+    }
+
+    public void OpenUpgradeUI()
+    {
+        _upgradeUI.SetActive(true);
+    }
+
+    public void CloseUpgradeUI()
+    {
+        _upgradeUI.SetActive(false);
+        UIManager.instance.SetHoveringStage(false);
+    }
+
+    public void Upgrade()
+    {
+        if (CalculateCost() > LevelManager.instance.currency) return;
+
+        LevelManager.instance.SpendCurrency(CalculateCost());
+
+        _level++;
+
+        _bulletPerSecond = CalculateBPS();
+        _targetingRange = CalculateRange();
+
+
+        CloseUpgradeUI();
+        Debug.Log("New bps" + _bulletPerSecond);
+        Debug.Log("New range" + _targetingRange);
+        Debug.Log("New cost" + CalculateCost());
+    }
+
+    private int CalculateCost()
+    {
+        return Mathf.RoundToInt(_baseUpgradeCost * Mathf.Pow(_level, 0.8f));
+    }
+
+    private float CalculateBPS()
+    {
+        return _bulletPerSecondBase * Mathf.Pow(_level, 0.6f);
+    }
+
+    private float CalculateRange()
+    {
+        return _targetingRangeBase * Mathf.Pow(_level, 0.4f);
     }
 
     private void OnDrawGizmosSelected()
